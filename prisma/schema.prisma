@@ -10,17 +10,19 @@ datasource db {
 }
 
 model services {
-  id          Int       @id @default(autoincrement())
-  name        String
-  description String?
-  duration    Int?
-  price       Float?
-  thumbnail   String?
-  createdat   DateTime  @default(now())
-  createdby   Int
-  updatedat   DateTime?
-  updatedby   Int?
-  status      Int       @default(1)
+  id           Int       @id @default(autoincrement())
+  name         String
+  description  String?
+  duration     Int?
+  durationtype Int?
+  price        String
+  pricetype    String
+  thumbnail    String?
+  createdat    DateTime  @default(now())
+  createdby    Int
+  updatedat    DateTime?
+  updatedby    Int?
+  status       Int       @default(1)
 
   @@schema("services")
 }

@@ -26,7 +26,7 @@ servicesController.post('/', async (c) => {
     const jwtPayload = await jwtverify(token, env.JWT_SECRET!);
     const userID = jwtPayload.sub_id;
     const body = await c.req.json();
-    const createdServices = await createServices(body.name, body.description, body.duration, body.price, body.thumbnail, userID);
+    const createdServices = await createServices(body.name, body.description, body.duration, body.durationtype, body.price, body.pricetype,body.thumbnail, userID);
     return c.json(createdServices);
 });
 
@@ -36,7 +36,7 @@ servicesController.put('/:id', async (c) => {
     const updatedBy = jwtPayload.sub_id;
     const servicesID = c.req.param('id');
     const body = await c.req.json();
-    const updatedServices = await updateServices(parseInt(servicesID), body.name, body.description, body.duration, body.price, body.thumbnail, parseInt(updatedBy));
+    const updatedServices = await updateServices(parseInt(servicesID), body.name, body.description, body.duration,body.durationtype,body.price, body.thumbnail, parseInt(updatedBy));
     return c.json(updatedServices);
 });
 

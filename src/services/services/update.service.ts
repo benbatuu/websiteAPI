@@ -2,7 +2,7 @@ import HttpStatusCode from "enums/httpstatustypes";
 import pc from "../../helpers/prismaclient.singleton";
 import { HTTPException } from "hono/http-exception";
 
-export const updateServices = async (id: number, name: string, description: string, duration: number, price: number, thumbnail: string, updatedby: number) => {
+export const updateServices = async (id: number, name: string, description: string, duration: number,durationtype:number, price: number, thumbnail: string, updatedby: number) => {
 
     const isServicesExist = await pc.services.findFirst({ where: { id: id } });
     
@@ -14,6 +14,7 @@ export const updateServices = async (id: number, name: string, description: stri
             name: name,
             description: description,
             duration: duration,
+            durationtype: durationtype,
             price: price,
             thumbnail: thumbnail,
             updatedby: updatedby,

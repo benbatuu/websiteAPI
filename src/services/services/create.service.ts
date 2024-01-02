@@ -2,7 +2,7 @@ import { HTTPException } from "hono/http-exception";
 import pc from "../../helpers/prismaclient.singleton";
 import HttpStatusCode from "enums/httpstatustypes";
 
-export const createServices = async (name: string, description: string, duration: number, price: number, thumbnail: string, createdby: number) => {
+export const createServices = async (name: string, description: string, duration: number, durationtype:number, price: string, pricetype:string,thumbnail: string, createdby: number) => {
     const isServicesExist = await pc.services.findFirst({ where: { name: name } });
 
     if (isServicesExist) throw new HTTPException(HttpStatusCode.BAD_REQUEST, {message: "service_already_exist"});
@@ -12,7 +12,9 @@ export const createServices = async (name: string, description: string, duration
             name: name,
             description: description,
             duration: duration,
+            durationtype: durationtype,
             price: price,
+            pricetype: pricetype,
             thumbnail: thumbnail,
             createdby: createdby,
         },
@@ -21,7 +23,9 @@ export const createServices = async (name: string, description: string, duration
             name: true,
             description: true,
             duration: true,
+            durationtype: true,
             price: true,
+            pricetype: true,
             thumbnail: true,
             createdat: true,
             createdby: true,
